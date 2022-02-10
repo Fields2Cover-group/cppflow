@@ -8,11 +8,15 @@ add_library(cppflow INTERFACE)
 
 target_include_directories(cppflow INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>
+  $<INSTALL_INTERFACE:include/cppflow>
 )
 target_compile_features(cppflow INTERFACE cxx_std_17)
 target_link_libraries(cppflow INTERFACE
   ${TENSORFLOW_LIB}
+)
+
+set_target_properties(cppflow PROPERTIES
+   PUBLIC_HEADER "include/cppflow/cppflow.h"
 )
 
 install(
@@ -20,6 +24,9 @@ install(
   EXPORT install_targets
 )
 
-#set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
-#install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+set(INSTALL_INCLUDE_DIR include CACHE PATH
+  "Installation directory for header files")
+
+set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
+install(DIRECTORY include/cppflow DESTINATION ${INSTALL_INCLUDE_DIR}/cppflow)
 export(PACKAGE cppflow)
