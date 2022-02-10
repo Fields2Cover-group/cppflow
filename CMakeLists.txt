@@ -19,19 +19,13 @@ target_link_libraries(cppflow INTERFACE
 
 set_target_properties(cppflow PROPERTIES
    POSITION_INDEPENDENT_CODE ON
-#   PUBLIC_HEADER "include/cppflow/cppflow.h"
 )
 
 install(TARGETS ${PROJECT_NAME}
   EXPORT ${PROJECT_NAME}-targets
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  PUBLIC_HEADER DESTINATION "${INSTALL_INCLUDE_DIR}/steering_functions"
+  PUBLIC_HEADER DESTINATION "${INSTALL_INCLUDE_DIR}/cppflow"
 )
-
-##install(
-##  TARGETS cppflow
-##  EXPORT install_targets
-##)
 
 export(PACKAGE cppflow)
