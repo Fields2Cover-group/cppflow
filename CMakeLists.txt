@@ -49,5 +49,9 @@ install(EXPORT cppflow-targets
   DESTINATION ${INSTALL_CMAKE_DIR}/cmake/cppflow
 )
 
+export(TARGETS cppflow
+  FILE cppflowConfig.cmake)
+
+
 set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
 export(PACKAGE cppflow)
