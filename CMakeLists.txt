@@ -6,27 +6,32 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_library(cppflow INTERFACE)
 
+target_compile_features(cppflow INTERFACE cxx_std_17)
+
 target_include_directories(cppflow INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
-target_compile_features(cppflow INTERFACE cxx_std_17)
+
 target_link_libraries(cppflow INTERFACE
   ${TENSORFLOW_LIB}
 )
 
 set_target_properties(cppflow PROPERTIES
-   PUBLIC_HEADER "include/cppflow/cppflow.h"
+   POSITION_INDEPENDENT_CODE ON
+#   PUBLIC_HEADER "include/cppflow/cppflow.h"
 )
 
-install(
-  TARGETS cppflow
-  EXPORT install_targets
+install(TARGETS ${PROJECT_NAME}
+  EXPORT ${PROJECT_NAME}-targets
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  PUBLIC_HEADER DESTINATION "${INSTALL_INCLUDE_DIR}/steering_functions"
 )
 
-set(INSTALL_INCLUDE_DIR include CACHE PATH
-  "Installation directory for header files")
+##install(
+##  TARGETS cppflow
+##  EXPORT install_targets
+##)
 
-set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
-install(DIRECTORY include/cppflow DESTINATION ${INSTALL_INCLUDE_DIR}/cppflow)
 export(PACKAGE cppflow)
