@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_library(cppflow INTERFACE)
 
-target_include_directories(cppflow INTERFACE
+target_include_directories(cppflow PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include/cppflow>
 )
@@ -28,5 +28,5 @@ set(INSTALL_INCLUDE_DIR include CACHE PATH
   "Installation directory for header files")
 
 set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
-install(DIRECTORY include/cppflow DESTINATION ${INSTALL_INCLUDE_DIR}/cppflow)
+install(DIRECTORY include DESTINATION ${INSTALL_INCLUDE_DIR})
 export(PACKAGE cppflow)
