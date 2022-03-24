@@ -33,9 +33,9 @@ target_link_libraries(cppflow INTERFACE
   ${TENSORFLOW_LIB}
 )
 
-set_target_properties(cppflow PROPERTIES
-   POSITION_INDEPENDENT_CODE ON
-)
+#set_target_properties(cppflow PROPERTIES
+#   POSITION_INDEPENDENT_CODE ON
+#)
 
 install(TARGETS cppflow
   EXPORT cppflow-targets
